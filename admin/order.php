@@ -74,7 +74,7 @@ if (isset($_GET['delete'])) {
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10">Customer Settings Page</h5>
+                                <h5 class="m-b-10">Order Settings Page</h5>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ if (isset($_GET['delete'])) {
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Transaksi My-laundry</h4>
+                            <h4>Transaksi order laundry Wash-land</h4>
                         </div>
                         <div class="card-body">
                             <?php if (isset($_GET['hapus'])): ?>
@@ -136,14 +136,11 @@ if (isset($_GET['delete'])) {
                                                 ?>
                                             </td>
                                             <td>
-                                                <a href="tambah-order.php?detail=<?php echo $rowTr['id'] ?>" class="btn btn-primary btn-sm">
-                                                    Detail
-                                                </a>
-                                                <a target="_blank" href="print.php?id=<?php echo $rowTr['id'] ?>" class="btn btn-success btn-sm">
-                                                    Print
+                                                <a href="tambah-order.php?detail=<?php echo $rowTr['id'] ?>" class="btn btn-secondary btn-sm">
+                                                    <i class="ti ti-notes"></i>
                                                 </a>
                                                 <a onclick="return confirm('Apakah anda yakin akan menghapus data ini??')" href="order.php?delete=<?php echo $rowTr['id'] ?>" class="btn btn-danger btn-sm">
-                                                    Hapus
+                                                    <i class="ti ti-trash"></i>
                                                 </a>
                                             </td>
                                         </tr>

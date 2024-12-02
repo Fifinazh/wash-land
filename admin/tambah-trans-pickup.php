@@ -4,7 +4,7 @@ include 'koneksi.php';
 
 $queryCustomer = mysqli_query($koneksi, "SELECT * FROM customer");
 
-$id = isset($_GET['ambil']) ? $_GET['ambil'] : '';
+$id = isset($_GET['proses']) ? $_GET['proses'] : '';
 $queryTransDetail = mysqli_query($koneksi, "SELECT customer.customer_name, customer.phone, customer.address, trans_order.order_pay, trans_order.order_change, 
 trans_order.order_code, trans_order.order_date, trans_order.order_end_date, trans_order.order_status, trans_order.id_customer, 
 type_of_service.service_name, type_of_service.price, trans_order_detail.* FROM trans_order_detail 
@@ -134,7 +134,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
             <div class="row">
                 <!-- [ sample-page ] start -->
                 <div class="col-sm-12">
-                    <?php if (isset($_GET['ambil'])) : ?>
+                    <?php if (isset($_GET['proses'])) : ?>
                         <div class="container-xxl flex-grow-1 container-p-y">
                             <div class="row">
                                 <div class="col-sm-12 mb-3">
@@ -145,7 +145,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                     <h5>Pengambilan Laundry : <?php echo $row[0]['customer_name'] ?></h5>
                                                 </div>
                                                 <div class="col-sm-6" align="right">
-                                                    <a href="tambah-order.php?detail=<?php echo $row[0]['id_order'] ?>" class="btn btn-secondary">Kembali</a>
+                                                    <a href="pickup.php" class="btn btn-secondary">Kembali</a>
                                                     <a href="print.php?id=<?php echo $id ?>" class="btn btn-success">Cetak Struk</a>
                                                 </div>
                                             </div>

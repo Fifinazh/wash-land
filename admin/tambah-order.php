@@ -160,13 +160,6 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                 <div class="col-sm-6">
                                                     <h5>Transaksi Laundry : <?php echo $row[0]['customer_name'] ?></h5>
                                                 </div>
-                                                <div class="col-sm-6" align="right">
-                                                    <a href="order.php" class="btn btn-secondary">Kembali</a>
-                                                    <a href="print.php?id=<?php echo $row[0]['id_order'] ?>" class="btn btn-success">Cetak Struk</a>
-                                                    <?php if ($row[0]['order_status'] == 0): ?>
-                                                        <a href="tambah-trans-pickup.php?ambil=<?php echo $row[0]['id_order'] ?>" class="btn btn-warning">Ambil Cucian</a>
-                                                    <?php endif ?>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -247,6 +240,11 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                     <?php endforeach ?>
                                                 </tbody>
                                             </table>
+                                            <tr>
+                                                <td align="right">
+                                                    <a href="order.php" class="btn btn-secondary">Kembali</a>
+                                                </td>
+                                            </tr>
                                         </div>
                                     </div>
                                 </div>

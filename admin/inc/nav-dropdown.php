@@ -7,10 +7,7 @@ $rowLogin = mysqli_fetch_assoc($queryLogin);
 <div class="ms-auto">
     <ul class="list-unstyled">
         <li class="dropdown pc-h-item">
-            <a class="pc-head-link head-link-secondary dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
-                role="button" aria-haspopup="false" aria-expanded="false">
-                <i class="ti ti-bell"></i>
-            </a>
+            
             <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
                 <div class="dropdown-header">
                     <a href="#!" class="link-primary float-end text-decoration-underline">Mark as all read</a>
@@ -65,17 +62,8 @@ $rowLogin = mysqli_fetch_assoc($queryLogin);
                 <div class="dropdown-header">
                     <h4>Have a good day, <span class="small text-muted"><?php echo isset($_SESSION['nama']) ? $_SESSION['nama'] : '' ?></span></h4>
                     <p class="text-muted">Project Admin</p>
-                    <hr>
                     <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 280px)">
                         <hr>
-                        <a href="../application/account-profile-v1.html" class="dropdown-item">
-                            <i class="ti ti-settings"></i>
-                            <span>Account Settings</span>
-                        </a>
-                        <a href="../application/social-profile.html" class="dropdown-item">
-                            <i class="ti ti-user"></i>
-                            <span>Social Profile</span>
-                        </a>
                         <a href="logout.php" class="dropdown-item">
                             <i class="ti ti-logout"></i>
                             <span>Logout</span>

@@ -110,7 +110,9 @@ if (isset($_GET['delete'])) {
                 <!-- [ sample-page ] start -->
                 <div class="col-sm-12">
                     <div class="card">
-                        <div class="card-header">Transaksi Laundry</div>
+                        <div class="card-header">
+                            <h4>Laporan Transaksi Wash-land</h4>
+                        </div>
                         <div class="card-body">
                             <?php if (isset($_GET['hapus'])): ?>
                                 <div class="alert alert-success" role="alert">
@@ -177,11 +179,11 @@ if (isset($_GET['delete'])) {
                                                 ?>
                                             </td>
                                             <td>
-                                                <a href="tambah-order.php?detail=<?php echo $rowTrans['id'] ?>" class="btn btn-primary btn-sm">
-                                                    Detail
+                                                <a href="tambah-order.php?detail=<?php echo $rowTrans['id'] ?>" class="btn btn-info btn-sm">
+                                                    <i class="ti ti-notes"></i>
                                                 </a>
-                                                <a target="_blank" href="print.php?id=<?php echo $rowTrans['id'] ?>" class="btn btn-success btn-sm">
-                                                    Printer
+                                                <a target="_blank" href="print.php?id=<?php echo $rowTrans['id'] ?>" class="btn btn-dark btn-sm">
+                                                    <i class="ti ti-printer"></i>
                                                 </a>
 
                                             </td>
@@ -189,6 +191,9 @@ if (isset($_GET['delete'])) {
                                     <?php } ?>
                                 </tbody>
                             </table>
+                            <div class="text-center mt-3">
+                                <a href="print-laporan.php" class="btn btn-secondary">Print Laporan</a>
+                            </div>
                         </div>
                     </div>
                 </div>

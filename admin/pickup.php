@@ -88,7 +88,7 @@ if (isset($_GET['delete'])) {
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Transaksi My-laundry</h4>
+                            <h4>Transaksi Pengembalian Wash-land</h4>
                         </div>
                         <div class="card-body">
                             <?php if (isset($_GET['hapus'])): ?>
@@ -136,14 +136,14 @@ if (isset($_GET['delete'])) {
                                                 ?>
                                             </td>
                                             <td>
-                                                <a href="tambah-order.php?detail=<?php echo $rowTr['id'] ?>" class="btn btn-primary btn-sm">
-                                                    Detail
+                                                <a href="tambah-trans-pickup.php?proses=<?php echo $rowTr['id'] ?>" class="btn btn-secondary btn-sm">
+                                                    <i class="ti ti-ad-2"></i>
                                                 </a>
-                                                <a target="_blank" href="print.php?id=<?php echo $rowTr['id'] ?>" class="btn btn-success btn-sm">
-                                                    Print
+                                                <a target="_blank" href="print.php?id=<?php echo $rowTr['id'] ?>" class="btn btn-dark btn-sm">
+                                                    <i class="ti ti-printer"></i>
                                                 </a>
                                                 <a onclick="return confirm('Apakah anda yakin akan menghapus data ini??')" href="order.php?delete=<?php echo $rowTr['id'] ?>" class="btn btn-danger btn-sm">
-                                                    Delete
+                                                    <i class="ti ti-trash"></i>
                                                 </a>
                                             </td>
                                         </tr>
