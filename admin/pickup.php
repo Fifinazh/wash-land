@@ -24,7 +24,7 @@ if (isset($_GET['delete'])) {
 <!-- [Head] start -->
 
 <head>
-    <title>User Page</title>
+    <title>Pickup Page</title>
     <!-- [Meta] -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -74,7 +74,7 @@ if (isset($_GET['delete'])) {
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10">Customer Settings Page</h5>
+                                <h5 class="m-b-10">Pickup Settings Page</h5>
                             </div>
                         </div>
                     </div>
@@ -137,12 +137,12 @@ if (isset($_GET['delete'])) {
                                             </td>
                                             <td>
                                                 <a href="tambah-trans-pickup.php?proses=<?php echo $rowTr['id'] ?>" class="btn btn-secondary btn-sm">
-                                                    <i class="ti ti-ad-2"></i>
+                                                    <i class="ti ti-businessplan"></i>
                                                 </a>
                                                 <a target="_blank" href="print.php?id=<?php echo $rowTr['id'] ?>" class="btn btn-dark btn-sm">
                                                     <i class="ti ti-printer"></i>
                                                 </a>
-                                                <a onclick="return confirm('Apakah anda yakin akan menghapus data ini??')" href="order.php?delete=<?php echo $rowTr['id'] ?>" class="btn btn-danger btn-sm">
+                                                <a onclick="return confirm('Apakah anda yakin akan menghapus data ini??')" href="pickup.php?delete=<?php echo $rowTr['id'] ?>" class="btn btn-danger btn-sm">
                                                     <i class="ti ti-trash"></i>
                                                 </a>
                                             </td>

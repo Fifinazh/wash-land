@@ -36,14 +36,17 @@ if (isset($_POST['simpan_transaksi'])) {
     $order_pay = $_POST['order_pay'];
     $order_change = $_POST['order_change'];
 
+    $total = $_POST['total_price'];
+
     $pickup_date = date("Y-m-d");
+
 
     // insert ke table trans_laundry_pickup
     $insert =  mysqli_query($koneksi, "INSERT INTO trans_laundry_pickup (id_order, id_customer, pickup_date) 
     VALUES ('$id_order','$id_customer', '$pickup_date')");
 
     // ubah status order jadi satu=sudah diambil
-    $updateTransOrder = mysqli_query($koneksi, "UPDATE trans_order SET order_pay = '$order_pay', 
+    $updateTransOrder = mysqli_query($koneksi, "UPDATE trans_order SET total_price = '$total', order_pay = '$order_pay', 
         order_change = '$order_change',  order_status = 1  WHERE id = '$id_order'");
 
     header("location:order.php?tambah=berhasil");
@@ -72,7 +75,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
 <!-- [Head] start -->
 
 <head>
-    <title>User Page</title>
+    <title>Pickup Page</title>
     <!-- [Meta] -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -122,7 +125,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10">Level Page</h5>
+                                <h5 class="m-b-10">Add Transaction Page</h5>
                             </div>
                         </div>
                     </div>
@@ -211,7 +214,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                         <tr>
                                                             <th>No</th>
                                                             <th>Nama Paket</th>
-                                                            <th>Quantity</th>
+                                                            <th>Quantity (gram)</th>
                                                             <th>Harga</th>
                                                             <th>Subtotal</th>
                                                         </tr>
@@ -238,7 +241,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                                 <strong>Total Keseluruhan</strong>
                                                             </td>
                                                             <td>
-                                                                <strong><?php echo "Rp" . number_format($total) ?></strong>
+                                                                <input type="text" name="total_price" class="form-control" value="<?php echo "Rp" . number_format($total) ?>" readonly>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -248,10 +251,10 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                             <td>
                                                                 <strong>
                                                                     <?php if (isset($row[0]['order_pay']) && $row[0]['order_pay'] == 0): ?>
-                                                                        <input type="text" name="order_pay" placeholder="Dibayar" class="form-control" value="<?php echo isset($_POST['order_pay']) ? $_POST['order_pay'] : '' ?>">
+                                                                        <input type="text" name="order_pay" placeholder="Masukan total bayar" class="form-control" value="<?php echo isset($_POST['order_pay']) ? $_POST['order_pay'] : '' ?>">
 
                                                                     <?php else: ?>
-                                                                        <input type="text" placeholder="Dibayar" class="form-control" value="<?php echo $row[0]['order_pay'] ?>">
+                                                                        <input type="text" placeholder="Dibayar" class="form-control" value="<?php echo "Rp" . number_format($row[0]['order_pay']) ?>" readonly>
                                                                     <?php endif; ?>
 
                                                                 </strong>
@@ -278,17 +281,23 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                                 <input type="hidden" name="id_customer" value="<?php echo $row[0]['id_customer'] ?>">
                                                                 <input type="hidden" name="id_order" value="<?php echo $row[0]['id_order'] ?>">
                                                                 <strong>
-                                                                    <input type="text" name="order_change" placeholder="Kembalian" class="form-control" value="<?php echo isset($kembalian) ?  number_format($kembalian) : "" ?>" readonly>
+                                                                    <?php if (isset($row[0]['order_change']) && $row[0]['order_change'] == 0): ?>
+                                                                        <input type="text" name="order_change" placeholder="kembalian" class="form-control" value="<?php echo isset($kembalian) ?  ($kembalian) : "" ?>" readonly>
+                                                                    <?php else: ?>
+                                                                        <input type="text" placeholder="Kembalian" class="form-control" value="<?php echo "Rp" . number_format($row[0]['order_change']) ?>" readonly>
+                                                                    <?php endif; ?>
                                                                 </strong>
                                                             </td>
                                                         </tr>
 
 
                                                         <tr>
-                                                            <td colspan="5" align="right">
-                                                                <button class="btn btn-primary" name="proses_kembalian">Proses Kembalian</button>
-                                                                <button class="btn btn-success" name="simpan_transaksi">Simpan Transaksi</button>
-                                                            </td>
+                                                            <?php if (isset($row[0]['order_change']) && $row[0]['order_change'] == 0): ?>
+                                                                <td colspan="5" align="right">
+                                                                    <button class="btn btn-primary" name="proses_kembalian">Proses Kembalian</button>
+                                                                    <button class="btn btn-success" name="simpan_transaksi">Simpan Transaksi</button>
+                                                                </td>
+                                                            <?php endif ?>
                                                         </tr>
                                                     </tbody>
                                                 </table>

@@ -102,6 +102,7 @@ if (isset($_GET['delete'])) {
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Email</th>
+                                        <th>username</th>
                                         <th>Password</th>
                                         <th>Role</th>
                                         <th>Aksi</th>
@@ -114,6 +115,7 @@ if (isset($_GET['delete'])) {
                                             <td><?php echo $no++ ?></td>
                                             <td><?php echo $rowUser['nama'] ?></td>
                                             <td><?php echo $rowUser['email'] ?></td>
+                                            <td><?php echo $rowUser['username'] ?></td>
                                             <td><?php echo $rowUser['password'] ?></td>
                                             <td><?php echo $rowUser['nama_level'] ?></td>
                                             <td>

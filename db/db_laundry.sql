@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2024 at 10:51 AM
+-- Generation Time: Dec 03, 2024 at 09:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `praujk_laundry`
+-- Database: `db_laundry`
 --
 
 -- --------------------------------------------------------
@@ -42,7 +42,9 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`id`, `customer_name`, `phone`, `address`, `created_at`, `update_at`) VALUES
 (8, 'cleo', '0812346597', 'jakarta', '2024-12-02 04:09:16', '2024-12-02 04:10:11'),
-(9, 'montiss', '012345', 'jakarta', '2024-12-02 08:33:46', '2024-12-02 08:33:46');
+(9, 'montiss', '012345', 'jakarta', '2024-12-02 08:33:46', '2024-12-02 08:33:46'),
+(10, 'bear', '081234567', 'jakarta', '2024-12-02 16:04:40', '2024-12-02 16:04:40'),
+(11, 'molly', '098765', 'jakarta', '2024-12-02 16:05:37', '2024-12-02 16:05:37');
 
 -- --------------------------------------------------------
 
@@ -62,8 +64,9 @@ CREATE TABLE `level` (
 --
 
 INSERT INTO `level` (`id`, `nama_level`, `created_at`, `update_at`) VALUES
-(1, 'administrator', '2024-11-13 06:20:24', '2024-11-13 06:20:24'),
-(2, 'operator', '2024-11-13 06:20:24', '2024-11-13 06:20:24');
+(5, 'administrator', '2024-12-03 02:21:21', '2024-12-03 02:21:21'),
+(6, 'operator', '2024-12-03 02:21:27', '2024-12-03 02:21:27'),
+(7, 'pimpinan', '2024-12-03 02:21:36', '2024-12-03 02:21:36');
 
 -- --------------------------------------------------------
 
@@ -106,7 +109,14 @@ INSERT INTO `trans_laundry_pickup` (`id`, `id_order`, `id_customer`, `pickup_dat
 (28, 61, 6, '2024-12-02', '', '2024-12-02 06:39:42', '2024-12-02 06:39:42'),
 (29, 43, 8, '2024-12-02', '', '2024-12-02 08:15:48', '2024-12-02 08:15:48'),
 (30, 46, 9, '2024-12-02', '', '2024-12-02 08:38:38', '2024-12-02 08:38:38'),
-(31, 45, 8, '2024-12-02', '', '2024-12-02 08:38:59', '2024-12-02 08:38:59');
+(31, 45, 8, '2024-12-02', '', '2024-12-02 08:38:59', '2024-12-02 08:38:59'),
+(32, 50, 11, '2024-12-02', '', '2024-12-02 16:06:51', '2024-12-02 16:06:51'),
+(33, 51, 8, '2024-12-03', '', '2024-12-03 03:58:50', '2024-12-03 03:58:50'),
+(34, 49, 10, '2024-12-03', '', '2024-12-03 05:02:52', '2024-12-03 05:02:52'),
+(35, 54, 8, '2024-12-03', '', '2024-12-03 05:12:09', '2024-12-03 05:12:09'),
+(36, 56, 9, '2024-12-03', '', '2024-12-03 06:49:56', '2024-12-03 06:49:56'),
+(37, 55, 8, '2024-12-03', '', '2024-12-03 06:52:05', '2024-12-03 06:52:05'),
+(38, 57, 9, '2024-12-03', '', '2024-12-03 07:26:42', '2024-12-03 07:26:42');
 
 -- --------------------------------------------------------
 
@@ -123,7 +133,7 @@ CREATE TABLE `trans_order` (
   `order_status` tinyint(11) NOT NULL DEFAULT 0,
   `total_price` int(11) NOT NULL,
   `order_pay` int(11) DEFAULT NULL,
-  `order_change` int(11) DEFAULT NULL,
+  `order_change` double(10,2) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted_at` int(11) NOT NULL DEFAULT 0
@@ -134,8 +144,7 @@ CREATE TABLE `trans_order` (
 --
 
 INSERT INTO `trans_order` (`id`, `id_customer`, `order_code`, `order_date`, `order_end_date`, `order_status`, `total_price`, `order_pay`, `order_change`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(45, 8, 'INV/021224-0001', '2024-12-02', '2024-12-03', 1, 0, 10000, 500, '2024-12-02 08:21:46', '2024-12-02 08:38:59', 0),
-(48, 9, 'INV/021224-00048', '2024-12-03', '2024-12-08', 0, 0, 0, 0, '2024-12-02 08:59:00', '2024-12-02 08:59:00', 0);
+(57, 9, 'WSHLND/031224-0001', '2024-12-04', '2024-12-05', 1, 0, 10000, 3250.00, '2024-12-03 07:26:24', '2024-12-03 07:26:42', 0);
 
 -- --------------------------------------------------------
 
@@ -164,7 +173,18 @@ INSERT INTO `trans_order_detail` (`id`, `id_order`, `id_service`, `qty`, `subtot
 (52, 45, 5, 1, 5000, NULL, '2024-12-02 08:21:46', '2024-12-02 08:21:46', 0),
 (53, 46, 4, 3, 13500, NULL, '2024-12-02 08:33:57', '2024-12-02 08:33:57', 0),
 (54, 47, 6, 1, 7000, NULL, '2024-12-02 08:50:40', '2024-12-02 08:50:40', 0),
-(55, 48, 4, 5, 22500, NULL, '2024-12-02 08:59:00', '2024-12-02 08:59:00', 0);
+(55, 48, 4, 5, 22500, NULL, '2024-12-02 08:59:00', '2024-12-02 08:59:00', 0),
+(56, 49, 4, 2, 9000, NULL, '2024-12-02 16:05:11', '2024-12-02 16:05:11', 0),
+(57, 49, 7, 3, 15000, NULL, '2024-12-02 16:05:11', '2024-12-02 16:05:11', 0),
+(58, 50, 6, 2, 14000, NULL, '2024-12-02 16:06:26', '2024-12-02 16:06:26', 0),
+(59, 51, 7, 2, 10000, NULL, '2024-12-02 16:24:20', '2024-12-02 16:24:20', 0),
+(60, 52, 5, 2, 10, NULL, '2024-12-03 05:06:23', '2024-12-03 05:06:23', 0),
+(61, 53, 4, 4, 18, NULL, '2024-12-03 05:08:21', '2024-12-03 05:08:21', 0),
+(62, 54, 5, 1000, 5000, NULL, '2024-12-03 05:11:21', '2024-12-03 05:11:21', 0),
+(63, 55, 4, 2000, 9000, NULL, '2024-12-03 06:48:43', '2024-12-03 06:48:43', 0),
+(64, 55, 6, 3500, 24500, NULL, '2024-12-03 06:48:43', '2024-12-03 06:48:43', 0),
+(65, 56, 6, 4000, 28000, NULL, '2024-12-03 06:49:03', '2024-12-03 06:49:03', 0),
+(66, 57, 4, 1500, 6750, NULL, '2024-12-03 07:26:24', '2024-12-03 07:26:24', 0);
 
 -- --------------------------------------------------------
 
@@ -214,8 +234,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `id_level`, `nama`, `email`, `username`, `password`, `foto`, `created_at`, `update_at`) VALUES
-(2, 1, 'fifi', 'fifi@gmail.com', 'fifiaja', '123', '', '2024-11-13 06:44:49', '2024-11-14 05:04:42'),
-(5, 2, 'pipi', 'pipi@gmail.com', 'pipiaja', '123', '', '2024-11-14 05:04:13', '2024-11-14 05:04:13');
+(6, 5, 'Admin Laundry', 'admin@gmail.com', 'superadmin', '123', '', '2024-12-03 02:32:44', '2024-12-03 02:32:44'),
+(7, 6, 'Kasir Laundry', 'kasir@gmail.com', 'superkasir', '123', '', '2024-12-03 02:45:41', '2024-12-03 02:45:41'),
+(8, 7, 'Pimpinan Laundry', 'pimpinan@gmail.com', 'superpimpinan', '123', '', '2024-12-03 02:46:16', '2024-12-03 02:46:16');
 
 --
 -- Indexes for dumped tables
@@ -274,31 +295,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `level`
 --
 ALTER TABLE `level`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `trans_laundry_pickup`
 --
 ALTER TABLE `trans_laundry_pickup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `trans_order`
 --
 ALTER TABLE `trans_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `trans_order_detail`
 --
 ALTER TABLE `trans_order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `type_of_service`
@@ -310,7 +331,7 @@ ALTER TABLE `type_of_service`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

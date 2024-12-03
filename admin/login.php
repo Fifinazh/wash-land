@@ -13,6 +13,7 @@ if (isset($_POST['login'])) {
     if ($password == $rowLogin['password']) {
       $_SESSION['nama'] = $rowLogin['nama'];
       $_SESSION['id'] = $rowLogin['id'];
+      $_SESSION['id_level'] = $rowLogin['id_level'];
       header("location:index.php");
     } else {
       header("location:login.php?login=gagal");

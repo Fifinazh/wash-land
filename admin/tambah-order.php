@@ -49,7 +49,7 @@ if (isset($_POST['simpan'])) {
 
         $rowPaket = mysqli_fetch_assoc($queryPaket);
         $harga = isset($rowPaket['price']) ? $rowPaket['price'] : '';
-        $subTotal = (int)$qty * (int)$harga;
+        $subTotal = ((int)$qty * (int)$harga) / 1000;
         //sub total
 
         if ($id_service > 0) {
@@ -71,7 +71,7 @@ if (isset($_POST['simpan'])) {
 // MAX : terbesar MIN : terkecil
 $queryInvoice = mysqli_query($koneksi, "SELECT MAX(id) AS no_invoice FROM trans_order ");
 //jika di dalam tabel trans order ada datanya
-$str_unique = "INV";
+$str_unique = "WSHLND";
 $date_now = date("dmy");
 if (mysqli_num_rows($queryInvoice) > 0) {
     $rowInvoice = mysqli_fetch_assoc($queryInvoice);
@@ -88,7 +88,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
 <!-- [Head] start -->
 
 <head>
-    <title>User Page</title>
+    <title>Order Page</title>
     <!-- [Meta] -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -181,6 +181,10 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                     <td><?php echo $row[0]['order_date'] ?></td>
                                                 </tr>
                                                 <tr>
+                                                    <th>Tanggal Pengembalian</th>
+                                                    <td><?php echo $row[0]['order_end_date'] ?></td>
+                                                </tr>
+                                                <tr>
                                                     <th>Status</th>
                                                     <td><?php echo changeStatus($row[0]['order_status']) ?></td>
                                                 </tr>
@@ -222,7 +226,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Paket</th>
-                                                        <th>Quantity</th>
+                                                        <th>Quantity (gram)</th>
                                                         <th>Harga</th>
                                                         <th>Subtotal</th>
                                                     </tr>
@@ -258,7 +262,9 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="card">
-                                            <div class="card-header"><?php echo isset($_GET['edit']) ? 'Edit' : 'Tambah' ?> Transaksi</div>
+                                            <div class="card-header">
+                                                <h4><?php echo isset($_GET['edit']) ? 'Edit' : 'Tambah' ?> Data Pelanggan</h4>
+                                            </div>
                                             <div class="card-body">
                                                 <div class="mb-3 row">
 
@@ -292,7 +298,9 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="card">
-                                            <div class="card-header">Detail Transaksi</div>
+                                            <div class="card-header">
+                                                <h4>Detail Transaksi</h4>
+                                            </div>
                                             <div class="card-body">
                                                 <div class="mb-3 row">
 
@@ -313,7 +321,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-3 mb-3">
-                                                        <label for="" class="form-label">Quantity</label>
+                                                        <label for="" class="form-label">Quantity (gram)</label>
                                                     </div>
                                                     <div class="col-9">
                                                         <input type="number" class="form-control" id="" name="qty[]"
@@ -339,7 +347,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-3 mb-3">
-                                                        <label for="" class="form-label">Quantity</label>
+                                                        <label for="" class="form-label">Quantity (gram)</label>
                                                     </div>
                                                     <div class="col-9">
                                                         <input type="number" class="form-control" id="" name="qty[]"

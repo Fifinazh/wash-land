@@ -26,24 +26,40 @@
             <i class="ti ti-apps"></i>
           </li>
 
+          <?php if ($_SESSION['id_level'] == 5) : ?>
           <li class="pc-item pc-hasmenu">
             <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-menu"></i></span><span class="pc-mtext">Master Data</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
-            <ul class="pc-submenu">
-              <li class="pc-item"><a class="pc-link" href="user.php">Data User</a></li>
-              <li class="pc-item pc-hasmenu"><a href="level.php" class="pc-link">Level</a></li>
-              <li class="pc-item pc-hasmenu"><a href="customer.php" class="pc-link">Data Customer</a></a></li>
-              <li class="pc-item pc-hasmenu"><a href="paket.php" class="pc-link">Paket</a></li>
-            </ul>
-          </li>
+              <ul class="pc-submenu">
+                <li class="pc-item"><a class="pc-link" href="user.php">Data User</a></li>
+                <li class="pc-item pc-hasmenu"><a href="level.php" class="pc-link">Level</a></li>
+                <li class="pc-item pc-hasmenu"><a href="customer.php" class="pc-link">Data Customer</a></a></li>
+                <li class="pc-item pc-hasmenu"><a href="paket.php" class="pc-link">Paket</a></li>
+              </ul>
+            </li>
+          <?php endif ?>
 
-          <li class="pc-item pc-hasmenu">
-            <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-menu"></i></span><span class="pc-mtext">Data Transaksi</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
-            <ul class="pc-submenu">
-              <li class="pc-item"><a class="pc-link" href="order.php">Pesanan</a></li>
-              <li class="pc-item pc-hasmenu"><a href="pickup.php" class="pc-link">Pengembalian</a></li>
-              <li class="pc-item pc-hasmenu"><a href="laporan.php" class="pc-link">Laporan Transaksi</a></li>
-            </ul>
-          </li>
+
+
+          <?php if ($_SESSION['id_level'] == 6) : ?>
+            <li class="pc-item pc-hasmenu">
+              <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-menu"></i></span><span class="pc-mtext">Data Transaksi</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+              <ul class="pc-submenu">
+                <li class="pc-item"><a class="pc-link" href="order.php">Pesanan</a></li>
+                <li class="pc-item pc-hasmenu"><a href="pickup.php" class="pc-link">Pengembalian</a></li>
+              </ul>
+            </li>
+          <?php endif ?>
+
+
+          <?php if ($_SESSION['id_level'] == 7) : ?>
+            <li class="pc-item pc-hasmenu">
+              <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-menu"></i></span><span class="pc-mtext">Data Penjualan</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+              <ul class="pc-submenu">
+                <li class="pc-item pc-hasmenu"><a href="laporan.php" class="pc-link">Laporan Transaksi</a></li>
+              </ul>
+            </li>
+          <?php endif ?>
+
 
 
           <!-- <li class="pc-item">

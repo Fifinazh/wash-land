@@ -5,7 +5,7 @@ include 'koneksi.php';
 
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 //mengambil data detail penjual dan penjualan
-$queryDetail = mysqli_query($koneksi, "SELECT trans_order.id, trans_order.order_code, trans_order.total_price, trans_order.order_pay, trans_order.order_change, customer.customer_name, type_of_service.service_name, type_of_service.price, trans_order_detail.* FROM trans_order_detail LEFT JOIN trans_order ON trans_order.id = trans_order_detail.id_order LEFT JOIN customer ON customer.id = trans_order.id_customer LEFT JOIN type_of_service ON type_of_service.id = trans_order_detail.id_service WHERE trans_order_detail.id_order = '$id'");
+$queryDetail = mysqli_query($koneksi, "SELECT trans_order.id, trans_order.order_code, trans_order.order_date, trans_order.order_end_date, trans_order.order_status, customer.customer_name, type_of_service.service_name, type_of_service.price, trans_order_detail.* FROM trans_order_detail LEFT JOIN trans_order ON trans_order.id = trans_order_detail.id_order LEFT JOIN customer ON customer.id = trans_order.id_customer LEFT JOIN type_of_service ON type_of_service.id = trans_order_detail.id_service");
 
 $row = [];
 while ($rowDetail = mysqli_fetch_assoc($queryDetail)) {
@@ -21,7 +21,7 @@ while ($rowDetail = mysqli_fetch_assoc($queryDetail)) {
 <!-- [Head] start -->
 
 <head>
-    <title>Cetak Transaksi :</title>
+    
     <!-- [Meta] -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -31,11 +31,9 @@ while ($rowDetail = mysqli_fetch_assoc($queryDetail)) {
     <meta name="author" content="codedthemes">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300..700&display=swap');
-
         body {
             margin: 20px;
-            font-family: "Overpass Mono", monospace;
+
         }
 
         .struk {
@@ -139,47 +137,47 @@ while ($rowDetail = mysqli_fetch_assoc($queryDetail)) {
             <p>081245367695</p>
         </div>
         <div class="struk-body">
-            <div class="container-md">
-                <p>No. Invoice : <?php echo ($row[0]['order_code']) ?></p>
-                <p>Nama Customer : <?php echo ($row[0]['customer_name']) ?></p>
-            </div>
             <table>
                 <thead>
                     <tr>
+                        <th>No Invoice</th>
+                        <th>Tanggal Laundry</th>
+                        <th>Tanggal Pengembalian</th>
                         <th>Jenis Paket Laundry</th>
-                        <th>Quantity</th>
-                        <th>Harga</th>
                         <th>Sub Total</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- row : [0] => data-->
                     <?php foreach ($row as $key => $rowDetail): ?>
                         <tr>
+
+                            <td><?php echo $rowDetail['order_code'] ?></td>
+                            <td><?php echo $rowDetail['order_date'] ?></td>
+                            <td><?php echo $rowDetail['order_end_date'] ?></td>
                             <td><?php echo $rowDetail['service_name'] ?></td>
-                            <td><?php echo $rowDetail['qty'] ?></td>
-                            <td><?php echo "Rp " . number_format($rowDetail['price']) ?></td>
-                            <td><?php echo "Rp " . number_format($rowDetail['subtotal']) ?></td>
+                            <td><?php echo $rowDetail['subtotal'] ?></td>
+                            <td>
+                                <?php
+                                switch ($rowDetail['order_status']) {
+                                    case '1':
+                                        $badge = "<span class='badge bg-primary'>Sudah dikembalikan</span>";
+                                        break;
+
+                                    default:
+                                        $badge = "<span class='badge bg-warning'>Baru</span>";
+                                        break;
+                                }
+
+                                echo $badge;
+                                ?>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
-            <div class="total">
-                <span>Total :</span>
-                <span><?php echo "Rp " . number_format($row[0]['total_price']) ?></span>
-            </div>
-            <div class="payment">
-                <span>Bayar :</span>
-                <span><?php echo "Rp." . number_format($row[0]['order_pay']) ?></span>
-            </div>
-            <div class="change">
-                <span>Kembalian :</span>
-                <span><?php echo "Rp." . number_format($row[0]['order_change']) ?></span>
-            </div>
-        </div>
-        <div class="struk-footer">
-            <p>Terima kasih atas kepercayaan anda menggunakan jasa laundry Wash-Land</p>
-            <p>Semoga senang dengan pelayanan kami</p>
+
         </div>
     </div>
 

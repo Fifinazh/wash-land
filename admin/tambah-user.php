@@ -11,7 +11,7 @@ if (isset($_POST['simpan'])) {
     $password = $_POST['password'];
     $id_level = $_POST['id_level'];
 
-    $insert = mysqli_query($koneksi, "INSERT INTO user (nama, email, password, id_level) VALUES ('$nama','$email','$password','$id_level)");
+    $insert = mysqli_query($koneksi, "INSERT INTO user (nama, email, password, username, id_level) VALUES ('$nama','$email','$password', '$username', '$id_level')");
 
     header("location:user.php?tambah=berhasil");
 } else if (isset($_GET['edit'])) {
@@ -122,7 +122,6 @@ $queryLevel = mysqli_query($koneksi, "SELECT * FROM level");
                                         <label for="" class="form-label">Email</label>
                                         <input type="email" class="form-control" name="email" placeholder="Masukkan Email Anda" required value="<?php echo isset($_GET['edit']) ? $rowEdit['email'] : '' ?>">
                                     </div>
-
                                 </div>
                                 <div class="mb-3 row">
                                     <div class="col-sm-6">
@@ -130,6 +129,10 @@ $queryLevel = mysqli_query($koneksi, "SELECT * FROM level");
                                         <input type="password" class="form-control" name="password" placeholder="Masukkan Password Anda">
                                     </div>
                                     <div class="col-sm-6">
+                                        <label for="" class="form-label">Username</label>
+                                        <input type="text" class="form-control" name="username" placeholder="Masukkan Userna Anda" required value="<?php echo isset($_GET['edit']) ? $rowEdit['username'] : '' ?>">
+                                    </div>
+                                    <div class="col-sm-6 mt-3">
                                         <label for="level" class="form-label">Role atau level</label>
                                         <select class="form-control" name="id_level" id="">
                                             <option value=""> -- Pilih Level -- </option>

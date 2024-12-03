@@ -47,7 +47,7 @@ if (isset($_GET['delete'])) {
 <!-- [Head] start -->
 
 <head>
-    <title>User Page</title>
+    <title>Report Page</title>
     <!-- [Meta] -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -97,7 +97,7 @@ if (isset($_GET['delete'])) {
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10">User Settings Page</h5>
+                                <h5 class="m-b-10">Report Settings Page</h5>
                             </div>
                         </div>
                     </div>
@@ -138,8 +138,9 @@ if (isset($_GET['delete'])) {
                                             <option value="1">Sudah Dikembalikan</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-3 mt-4">
-                                        <button name="filter" class="btn btn-primary">Tampilkan Laporan</button>
+                                    <div class="col-sm-3 mt-4 d-flex justify-content-end">
+                                        <button name="filter" class="btn btn-primary ms-2">Tampilkan Laporan</button>
+                                        <a href="print-laporan.php" class="btn btn-secondary ">Print Laporan</a>
                                     </div>
                                 </div>
                             </form>
@@ -191,9 +192,6 @@ if (isset($_GET['delete'])) {
                                     <?php } ?>
                                 </tbody>
                             </table>
-                            <div class="text-center mt-3">
-                                <a href="print-laporan.php" class="btn btn-secondary">Print Laporan</a>
-                            </div>
                         </div>
                     </div>
                 </div>
