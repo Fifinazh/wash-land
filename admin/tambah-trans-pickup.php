@@ -49,7 +49,7 @@ if (isset($_POST['simpan_transaksi'])) {
     $updateTransOrder = mysqli_query($koneksi, "UPDATE trans_order SET total_price = '$total', order_pay = '$order_pay', 
         order_change = '$order_change',  order_status = 1  WHERE id = '$id_order'");
 
-    header("location:order.php?tambah=berhasil");
+    header("location:pickup.php?tambah=berhasil");
 }
 
 
@@ -241,7 +241,7 @@ if (mysqli_num_rows($queryInvoice) > 0) {
                                                                 <strong>Total Keseluruhan</strong>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="total_price" class="form-control" value="<?php echo "Rp" . number_format($total) ?>" readonly>
+                                                                <input type="text" name="total_price" class="form-control" value="<?php echo $total; ?>" readonly>
                                                             </td>
                                                         </tr>
                                                         <tr>

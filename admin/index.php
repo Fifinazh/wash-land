@@ -15,7 +15,15 @@ session_start();
   <meta name="description" content="Berry is trending dashboard template made using Bootstrap 5 design framework. Berry is available in Bootstrap, React, CodeIgniter, Angular,  and .net Technologies.">
   <meta name="keywords" content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard">
   <meta name="author" content="codedthemes">
+  <style>
+    .card {
+      min-height: 500px;
+    }
 
+    .card .card-body img {
+      max-width: 300px;
+    }
+  </style>
   <?php include 'inc/header.php' ?>
 </head>
 <!-- [Head] end -->
@@ -54,11 +62,21 @@ session_start();
     <div class="pc-content">
       <!-- [ Main Content ] start -->
       <div class="row">
-        <!-- [ sample-page ] start -->
-        
-        
-       
-        <!-- [ sample-page ] end -->
+        <div class="card">
+          <div class="card-header">
+            <h3><b>Welcome, to Wash-land laundry App</b></h3>
+          </div>
+          <div class="card-body d-flex align-items-center justify-content-center gap-3">
+            <div class="row">
+              <div class="col-sm-12 mb-5" align="center">
+                <img src="upload/laundry-machine.png" alt="">
+              </div>
+              <div class="col-sm-12" align="center">
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- [ Main Content ] end -->
     </div>
